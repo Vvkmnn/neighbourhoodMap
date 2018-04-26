@@ -223,3 +223,20 @@ ko.applyBindings(new ViewModel());
 mapLoadError = function () {
         alert('Google maps failed to load. Try reloading the page or your internet connection');
 };
+
+
+document.getElementById('search-text').addEventListener('click', showListings)
+
+function showListings() {
+    let bounds = new google.maps.LatLngBounds();
+    for (let i=0; i<markers.length; i++) {
+        markers[i].setMap(map);
+        bounds.extend(markers[i].position);
+    }
+} 
+
+function hideListings() {  
+    for (let i=0; i<markers.length; i++) {
+        markers[i].setMap(null);
+    }
+}
